@@ -2,3 +2,8 @@ DROP DATABASE IF EXISTS games;
 CREATE DATABASE IF NOT EXISTS games;
 
 USE games;
+
+CREATE TABLE `user` (
+    `user_id` INT NOT NULL AUTO_INCREMENT;
+    `username`
+)
