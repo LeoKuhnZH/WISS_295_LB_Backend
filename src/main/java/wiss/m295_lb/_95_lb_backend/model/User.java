@@ -1,7 +1,7 @@
 package wiss.m295_lb._95_lb_backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 /**
  * This is the POJO for the "user" table
@@ -9,4 +9,19 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", nullable = false)
+    private int id;
+
+    @Column(name="username", nullable = false)
+    private String name;
+
+    @Column(name="score", nullable = false)
+    private int score;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "game_id", nullable = false)
+    @JsonBackReference
+    private Game game;
 }
