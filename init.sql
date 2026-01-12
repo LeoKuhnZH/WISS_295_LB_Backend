@@ -17,7 +17,6 @@ CREATE TABLE `game`
     `title`       VARCHAR(255) NOT NULL,
     `description` VARCHAR(255) DEFAULT NULL,
     `rating`      INT          NOT NULL,
-    `genre_id`    INT          NOT NULL,
     PRIMARY KEY (`game_id`)
 );
 
@@ -25,15 +24,36 @@ CREATE TABLE `user`
 (
     `user_id`  INT          NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(255) NOT NULL,
-    `game_id`  INT          NOT NULL,
-    `score`    INT          NOT NULL DEFAULT 0,
     PRIMARY KEY (`user_id`)
 );
 
-ALTER TABLE `game`
-    ADD CONSTRAINT `fk_game_genre`
+CREATE TABLE `game_genre`
+(
+    `game_id`  INT NOT NULL,
+    `genre_id` INT NOT NULL,
+    PRIMARY KEY (`game_id`, `genre_id`)
+);
+
+CREATE TABLE `user_game`
+(
+    `user_id` INT NOT NULL,
+    `game_id` INT NOT NULL,
+    `score`   INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (`user_id`, `game_id`)
+);
+
+ALTER TABLE `game_genre`
+    ADD CONSTRAINT `fk_game_genre_game`
+        FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`);
+
+ALTER TABLE `game_genre`
+    ADD CONSTRAINT `fk_game_genre_genre`
         FOREIGN KEY (`genre_id`) REFERENCES `genre` (`genre_id`);
 
-ALTER TABLE `user`
-    ADD CONSTRAINT `fk_user_game`
+ALTER TABLE `user_game`
+    ADD CONSTRAINT `fk_user_game_user`
+        FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+ALTER TABLE `user_game`
+    ADD CONSTRAINT `fk_user_game_game`
         FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`);

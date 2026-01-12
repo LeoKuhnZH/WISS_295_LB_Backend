@@ -2,6 +2,7 @@ package wiss.m295_lb._95_lb_backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,6 +21,9 @@ public class Genre {
 
     @Column(name = "description", nullable = true)
     private Optional<String> description;
+
+    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
+    private List<Game> games;
 
     public int getId() {
         return id;
@@ -43,5 +47,13 @@ public class Genre {
 
     public void setDescription(String description) {
         this.description = description == null ? null : Optional.of(description);
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
 }

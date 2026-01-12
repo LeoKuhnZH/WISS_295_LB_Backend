@@ -1,8 +1,8 @@
 package wiss.m295_lb._95_lb_backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,10 +25,14 @@ public class Game {
     @Column(name = "rating", nullable = false)
     private int rating;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "genre_id", nullable = false)
-    @JsonBackReference
-    private Genre genre;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "game_genre",
+               joinColumns = @JoinColumn(name = "game_id"),
+               inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genre> genres;
+
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+    private List<UserGame> userGames;
 
     public int getId() {
         return id;
@@ -62,11 +66,19 @@ public class Game {
         this.rating = rating;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public List<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public List<UserGame> getUserGames() {
+        return userGames;
+    }
+
+    public void setUserGames(List<UserGame> userGames) {
+        this.userGames = userGames;
     }
 }
