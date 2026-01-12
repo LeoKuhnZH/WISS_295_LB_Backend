@@ -26,7 +26,7 @@ CREATE TABLE `user`
     `user_id`  INT          NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(255) NOT NULL,
     `game_id`  INT          NOT NULL,
-    `score`    INT DEFAULT 0,
+    `score`    INT NOT NULL DEFAULT 0,
     PRIMARY KEY (`user_id`)
 );
 
