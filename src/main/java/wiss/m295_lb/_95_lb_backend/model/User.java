@@ -14,10 +14,10 @@ public class User {
     @Column(name = "user_id", nullable = false)
     private int id;
 
-    @Column(name="username", nullable = false)
+    @Column(name = "username", nullable = false)
     private String name;
 
-    @Column(name="score", nullable = false)
+    @Column(name = "score", nullable = false)
     private int score;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -48,8 +48,7 @@ public class User {
     public void setScore(int score) {
         try {
             this.score = score;
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             this.score = 0;
         }
     }

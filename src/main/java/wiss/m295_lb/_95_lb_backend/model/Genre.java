@@ -15,10 +15,10 @@ public class Genre {
     @Column(name = "genre_id", nullable = false)
     private int id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="description", nullable = true)
+    @Column(name = "description", nullable = true)
     private Optional<String> description;
 
     public int getId() {
