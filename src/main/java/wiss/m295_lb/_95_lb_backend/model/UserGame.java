@@ -1,13 +1,15 @@
 package wiss.m295_lb._95_lb_backend.model;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /**
  * Connection table between User and Game
  */
 @Entity
-@Table(name="user_game")
+@Table(name = "user_game")
 public class UserGame {
 
 

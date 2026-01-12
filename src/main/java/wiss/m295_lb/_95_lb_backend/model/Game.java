@@ -1,6 +1,5 @@
 package wiss.m295_lb._95_lb_backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Optional;
