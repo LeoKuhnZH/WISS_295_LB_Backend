@@ -6,7 +6,7 @@ import jakarta.persistence.*;
  * This is the POJO for the "game" table
  */
 @Entity
-@Table(name="game")
+@Table(name = "game")
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
