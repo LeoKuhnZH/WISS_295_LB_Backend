@@ -13,7 +13,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id", nullable = false)
-    private int game_id;
+    private Integer game_id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -22,13 +22,13 @@ public class Game {
     private Optional<String> description;
 
     @Column(name = "rating", nullable = false)
-    private int rating;
+    private Integer rating;
 
-    public int getGame_id() {
+    public Integer getGame_id() {
         return game_id;
     }
 
-    public void setGame_id(int game_id) {
+    public void setGame_id(Integer game_id) {
         this.game_id = game_id;
     }
 
@@ -48,11 +48,11 @@ public class Game {
         this.description = description == null ? null : Optional.of(description);
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }

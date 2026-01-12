@@ -11,16 +11,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "user_game")
 public class UserGame {
-
+    private Integer id;
 
     @Column(name = "score", nullable = false)
-    private int score;
+    private Integer score;
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         try {
             this.score = score;
         } catch (NullPointerException e) {

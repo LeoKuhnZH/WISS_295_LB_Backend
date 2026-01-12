@@ -13,7 +13,7 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id", nullable = false)
-    private int genre_id;
+    private Integer genre_id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -21,11 +21,11 @@ public class Genre {
     @Column(name = "description", nullable = true)
     private Optional<String> description;
 
-    public int getGenre_id() {
+    public Integer getGenre_id() {
         return genre_id;
     }
 
-    public void setGenre_id(int genre_id) {
+    public void setGenre_id(Integer genre_id) {
         this.genre_id = genre_id;
     }
 
