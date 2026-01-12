@@ -1,4 +1,7 @@
 package wiss.m295_lb._95_lb_backend.repository;
 
-public class UserRepository {
+import org.springframework.data.repository.CrudRepository;
+import wiss.m295_lb._95_lb_backend.model.User;
+
+public interface UserRepository extends CrudRepository<User, Integer> {
 }

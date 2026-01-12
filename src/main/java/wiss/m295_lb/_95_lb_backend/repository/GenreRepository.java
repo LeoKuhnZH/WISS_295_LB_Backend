@@ -1,4 +1,7 @@
 package wiss.m295_lb._95_lb_backend.repository;
 
-public class GenreRepository {
+import org.springframework.data.repository.CrudRepository;
+import wiss.m295_lb._95_lb_backend.model.Genre;
+
+public interface GenreRepository extends CrudRepository<Genre, Integer> {
 }
