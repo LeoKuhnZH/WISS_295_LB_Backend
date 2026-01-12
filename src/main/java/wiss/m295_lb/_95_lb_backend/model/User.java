@@ -17,14 +17,6 @@ public class User {
     @Column(name = "username", nullable = false)
     private String name;
 
-    @Column(name = "score", nullable = false)
-    private int score;
-
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "game_id", nullable = false)
-    @JsonBackReference
-    private Game game;
-
     public int getId() {
         return id;
     }
@@ -39,25 +31,5 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        try {
-            this.score = score;
-        } catch (NullPointerException e) {
-            this.score = 0;
-        }
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 }
