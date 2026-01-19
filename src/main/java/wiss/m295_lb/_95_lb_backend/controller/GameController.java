@@ -1,9 +1,10 @@
 package wiss.m295_lb._95_lb_backend.controller;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import wiss.m295_lb._95_lb_backend.model.Game;
 import wiss.m295_lb._95_lb_backend.repository.GameRepository;
@@ -11,20 +12,19 @@ import wiss.m295_lb._95_lb_backend.repository.GameRepository;
 import java.util.List;
 import java.util.Optional;
 
-
+@Validated
 @RestController
 @RequestMapping("/api/game")
 public class GameController {
 
-    @Autowired
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
 
     public GameController(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Game> getGame(@PathVariable Long id) {
+    public ResponseEntity<Game> getGame(@PathVariable @Min(1) Long id) {
         Optional<Game> game = gameRepository.findById(id);
         return game.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -43,7 +43,7 @@ public class GameController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Game> updateGame(
-            @PathVariable Long id,
+            @PathVariable @Min(1) Long id,
             @Valid @RequestBody Game game
     ) {
         Optional<Game> existingGame = gameRepository.findById(id);
@@ -66,13 +66,11 @@ public class GameController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
-        Optional<Game> game = gameRepository.findById(id);
-        if (game.isEmpty()) {
+    public ResponseEntity<Void> deleteGame(@PathVariable @Min(1) Long id) {
+        if (!gameRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
-        } else {
-            gameRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
         }
+        gameRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

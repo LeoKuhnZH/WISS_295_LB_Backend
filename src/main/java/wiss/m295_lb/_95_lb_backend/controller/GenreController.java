@@ -1,9 +1,10 @@
 package wiss.m295_lb._95_lb_backend.controller;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import wiss.m295_lb._95_lb_backend.model.Genre;
 import wiss.m295_lb._95_lb_backend.repository.GenreRepository;
@@ -11,19 +12,19 @@ import wiss.m295_lb._95_lb_backend.repository.GenreRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Validated
 @RestController
 @RequestMapping("/api/genre")
 public class GenreController {
 
-    @Autowired
-    private GenreRepository genreRepository;
+    private final GenreRepository genreRepository;
 
     public GenreController(GenreRepository genreRepository) {
         this.genreRepository = genreRepository;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Genre> getGenreById(@PathVariable Long id) {
+    public ResponseEntity<Genre> getGenreById(@PathVariable @Min(1) Long id) {
         Optional<Genre> genre = genreRepository.findById(id);
         return genre.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -41,11 +42,11 @@ public class GenreController {
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<Genre> updateGenre(
-            @PathVariable Long id,
+    public ResponseEntity<Genre> updateGenre(
+            @PathVariable @Min(1) Long id,
             @Valid @RequestBody Genre genre) {
         Optional<Genre> existingGenre = genreRepository.findById(id);
-        if(existingGenre.isEmpty()) {
+        if (existingGenre.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
@@ -53,7 +54,7 @@ public class GenreController {
         genreToUpdate.setName(genre.getName());
         if (genre.getDescription().isPresent()) {
             genreToUpdate.setDescription(genre.getDescription().get());
-        }  else {
+        } else {
             genreToUpdate.setDescription(null);
         }
         Genre updatedGenre = genreRepository.save(genreToUpdate);
@@ -61,13 +62,11 @@ public class GenreController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGenre(@PathVariable Long id) {
-        Optional<Genre> genre = genreRepository.findById(id);
-        if(genre.isEmpty()) {
+    public ResponseEntity<Void> deleteGenre(@PathVariable @Min(1) Long id) {
+        if (!genreRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
-        } else {
-            genreRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
         }
+        genreRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
