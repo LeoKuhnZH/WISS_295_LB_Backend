@@ -1,6 +1,9 @@
 package wiss.m295_lb._95_lb_backend.model;
 
 import jakarta.persistence.*;
+import wiss.m295_lb._95_lb_backend.model.connecting_table.UserGame;
+
+import java.util.Set;
 
 /**
  * This is the POJO for the "user" table
@@ -14,7 +17,10 @@ public class User {
     private Long userId;
 
     @Column(name = "username", nullable = false)
-    private String name;
+    private String username;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserGame> games;
 
     public Long getUserId() {
         return userId;
@@ -24,11 +30,19 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Set<UserGame> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<UserGame> games) {
+        this.games = games;
     }
 }

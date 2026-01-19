@@ -48,4 +48,12 @@ public class Genre {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
+    }
 }

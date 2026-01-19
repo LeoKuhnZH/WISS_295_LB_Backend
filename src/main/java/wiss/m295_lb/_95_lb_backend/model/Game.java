@@ -1,6 +1,7 @@
 package wiss.m295_lb._95_lb_backend.model;
 
 import jakarta.persistence.*;
+import wiss.m295_lb._95_lb_backend.model.connecting_table.UserGame;
 
 import java.util.Optional;
 import java.util.Set;
@@ -33,6 +34,9 @@ public class Game {
     )
     private Set<Genre> genres;
 
+    @OneToMany(mappedBy = "game")
+    private Set<UserGame> users;
+
     public Long getGameId() {
         return gameId;
     }
@@ -63,5 +67,21 @@ public class Game {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public Set<UserGame> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<UserGame> users) {
+        this.users = users;
     }
 }

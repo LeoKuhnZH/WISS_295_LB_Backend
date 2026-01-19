@@ -1,4 +1,4 @@
-package wiss.m295_lb._95_lb_backend.model;
+package wiss.m295_lb._95_lb_backend.model.connecting_table.key;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -10,10 +10,10 @@ import java.util.Objects;
 public class UserGameKey implements Serializable {
 
     @Column(name = "user_id")
-    Long userId;
+    private Long userId;
 
     @Column(name = "game_id")
-    Long gameId;
+    private Long gameId;
 
     public Long getUserId() {
         return userId;
