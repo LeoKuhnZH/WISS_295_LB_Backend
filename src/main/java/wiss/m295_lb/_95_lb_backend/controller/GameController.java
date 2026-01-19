@@ -65,7 +65,7 @@ public class GameController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Game> deleteGame(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
         Optional<Game> game = gameRepository.findById(id);
         if (game.isEmpty()) {
             return ResponseEntity.notFound().build();
