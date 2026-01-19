@@ -53,11 +53,7 @@ public class GameController {
 
         Game gameToUpdate = existingGame.get();
         gameToUpdate.setTitle(game.getTitle());
-        if (game.getDescription().isPresent()) {
-            gameToUpdate.setDescription(game.getDescription().get());
-        } else {
-            gameToUpdate.setDescription(null);
-        }
+        gameToUpdate.setDescription(game.getDescription());
         gameToUpdate.setRating(game.getRating());
         gameToUpdate.setGenres(game.getGenres());
 

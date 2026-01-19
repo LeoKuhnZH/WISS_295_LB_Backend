@@ -53,8 +53,8 @@ public class Game {
         this.title = title;
     }
 
-    public Optional<String> getDescription() {
-        return Optional.ofNullable(description);
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {

@@ -52,11 +52,7 @@ public class GenreController {
 
         Genre genreToUpdate = existingGenre.get();
         genreToUpdate.setName(genre.getName());
-        if (genre.getDescription().isPresent()) {
-            genreToUpdate.setDescription(genre.getDescription().get());
-        } else {
-            genreToUpdate.setDescription(null);
-        }
+        genreToUpdate.setDescription(genre.getDescription());
         Genre updatedGenre = genreRepository.save(genreToUpdate);
         return ResponseEntity.ok(updatedGenre);
     }
