@@ -10,4 +10,8 @@ public class GameController {
 
     @Autowired
     private GameRepository gameRepository;
+
+    public GameController(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
 }

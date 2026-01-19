@@ -10,4 +10,8 @@ public class GenreController {
 
     @Autowired
     private GenreRepository genreRepository;
+
+    public GenreController(GenreRepository genreRepository) {
+        this.genreRepository = genreRepository;
+    }
 }

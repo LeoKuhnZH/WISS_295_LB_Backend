@@ -10,4 +10,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 }
