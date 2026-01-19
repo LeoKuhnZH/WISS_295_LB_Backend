@@ -35,7 +35,8 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<Game> createGame(@RequestBody Game game) {
+    public ResponseEntity<Game> createGame(
+            @Valid @RequestBody Game game) {
         Game createdGame = gameRepository.save(game);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdGame);
     }

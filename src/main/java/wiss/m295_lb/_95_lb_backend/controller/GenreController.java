@@ -1,5 +1,6 @@
 package wiss.m295_lb._95_lb_backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +34,16 @@ public class GenreController {
     }
 
     @PostMapping
-    public ResponseEntity<Genre> createGenre(@RequestBody Genre genre) {
+    public ResponseEntity<Genre> createGenre(
+            @Valid @RequestBody Genre genre) {
         Genre newGenre = genreRepository.save(genre);
         return ResponseEntity.status(HttpStatus.CREATED).body(newGenre);
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<Genre> updateGenre(@PathVariable Long id, @RequestBody Genre genre) {
+    public  ResponseEntity<Genre> updateGenre(
+            @PathVariable Long id,
+            @Valid @RequestBody Genre genre) {
         Optional<Genre> existingGenre = genreRepository.findById(id);
         if(existingGenre.isEmpty()) {
             return ResponseEntity.notFound().build();
