@@ -20,12 +20,12 @@ public class Game {
     private String title;
 
     @Column(name = "description", nullable = true)
-    private Optional<String> description;
+    private String description;
 
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "game_genre",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -49,12 +49,12 @@ public class Game {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description.orElse("");
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : Optional.of(description);
+        this.description = description;
     }
 
     public Integer getRating() {
