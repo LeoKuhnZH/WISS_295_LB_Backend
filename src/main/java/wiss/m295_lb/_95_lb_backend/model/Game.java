@@ -14,7 +14,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id", nullable = false)
-    private Long game_id;
+    private Long gameId;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -33,12 +33,12 @@ public class Game {
     )
     private Set<Genre> genres;
 
-    public Long getGame_id() {
-        return game_id;
+    public Long getGameId() {
+        return gameId;
     }
 
-    public void setGame_id(Long game_id) {
-        this.game_id = game_id;
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
     }
 
     public String getTitle() {

@@ -14,7 +14,7 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id", nullable = false)
-    private Long genre_id;
+    private Long genreId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -25,12 +25,12 @@ public class Genre {
     @ManyToMany(mappedBy = "genres")
     private Set<Game> games;
 
-    public Long getGenre_id() {
-        return genre_id;
+    public Long getGenreId() {
+        return genreId;
     }
 
-    public void setGenre_id(Long genre_id) {
-        this.genre_id = genre_id;
+    public void setGenreId(Long genreId) {
+        this.genreId = genreId;
     }
 
     public String getName() {
