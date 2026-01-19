@@ -65,8 +65,7 @@ public class GameController {
     public ResponseEntity<Game> patchGame(
             @PathVariable @Min(1) Long id,
             @RequestBody Game game
-    )
-        {
+    ) {
         return gameRepository.findById(id)
                 .map(existing -> {
 
@@ -89,7 +88,7 @@ public class GameController {
                     return ResponseEntity.ok(gameRepository.save(existing));
                 })
                 .orElse(ResponseEntity.notFound().build());
-        }
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGame(@PathVariable @Min(1) Long id) {

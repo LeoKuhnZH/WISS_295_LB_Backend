@@ -2,7 +2,6 @@ package wiss.m295_lb._95_lb_backend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Entity

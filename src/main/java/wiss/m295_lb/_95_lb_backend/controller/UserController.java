@@ -26,13 +26,13 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(
             @PathVariable @Min(1)
-            Long id){
+            Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
@@ -64,10 +64,9 @@ public class UserController {
     public ResponseEntity<User> patchUser(
             @PathVariable @Min(1) Long id,
             @RequestBody User user
-    )
-    {
+    ) {
         return userRepository.findById(id)
-                .map(existing ->{
+                .map(existing -> {
                     if (user.getUsername() != null) {
                         existing.setUsername(user.getUsername());
                     }
@@ -78,7 +77,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable @Min(1) Long id){
+    public ResponseEntity<Void> deleteUser(@PathVariable @Min(1) Long id) {
         if (!userRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

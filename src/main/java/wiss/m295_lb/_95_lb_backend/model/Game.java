@@ -3,7 +3,6 @@ package wiss.m295_lb._95_lb_backend.model;
 import jakarta.persistence.*;
 import wiss.m295_lb._95_lb_backend.model.connecting_table.UserGame;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Entity
