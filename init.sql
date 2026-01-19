@@ -5,7 +5,7 @@ USE games;
 
 CREATE TABLE `genre`
 (
-    `genre_id`    INT          NOT NULL AUTO_INCREMENT,
+    `genre_id`    BIGINT       NOT NULL AUTO_INCREMENT,
     `name`        VARCHAR(255) NOT NULL,
     `description` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (`genre_id`)
@@ -13,7 +13,7 @@ CREATE TABLE `genre`
 
 CREATE TABLE `game`
 (
-    `game_id`     INT          NOT NULL AUTO_INCREMENT,
+    `game_id`     BIGINT       NOT NULL AUTO_INCREMENT,
     `title`       VARCHAR(255) NOT NULL,
     `description` VARCHAR(255) DEFAULT NULL,
     `rating`      INT          NOT NULL,
@@ -22,23 +22,23 @@ CREATE TABLE `game`
 
 CREATE TABLE `user`
 (
-    `user_id`  INT          NOT NULL AUTO_INCREMENT,
+    `user_id`  BIGINT       NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`user_id`)
 );
 
 CREATE TABLE `game_genre`
 (
-    `game_id`  INT NOT NULL,
-    `genre_id` INT NOT NULL,
+    `game_id`  BIGINT NOT NULL,
+    `genre_id` BIGINT NOT NULL,
     PRIMARY KEY (`game_id`, `genre_id`)
 );
 
 CREATE TABLE `user_game`
 (
-    `user_id` INT NOT NULL,
-    `game_id` INT NOT NULL,
-    `score`   INT NOT NULL DEFAULT 0,
+    `user_id` BIGINT NOT NULL,
+    `game_id` BIGINT NOT NULL,
+    `score`   INT    NOT NULL DEFAULT 0,
     PRIMARY KEY (`user_id`, `game_id`)
 );
 

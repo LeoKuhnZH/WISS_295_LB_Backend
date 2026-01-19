@@ -180,7 +180,7 @@ public class UserGameController {
      * @param gameId the game id
      * @return the response entity
      */
-    @DeleteMapping("/userId}/{gameId}")
+    @DeleteMapping("/{userId}/{gameId}")
     public ResponseEntity<Void> delete(
             @PathVariable @Min(1) Long userId,
             @PathVariable @Min(1) Long gameId
