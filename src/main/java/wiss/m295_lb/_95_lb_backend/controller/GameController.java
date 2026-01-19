@@ -81,7 +81,7 @@ public class GameController {
                     if (game.getRating() != null) {
                         existing.setRating(game.getRating());
                     }
-                    
+
                     if (game.getGenres() != null) {
                         existing.setGenres(game.getGenres());
                     }

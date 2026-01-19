@@ -57,6 +57,27 @@ public class GenreController {
         return ResponseEntity.ok(updatedGenre);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Genre> patchGenre(
+            @PathVariable @Min(1) Long id,
+            @Valid @RequestBody Genre genre
+    ) {
+        return genreRepository.findById(id)
+                .map(existing -> {
+
+                    if (existing.getName() != null) {
+                        genre.setName(existing.getName());
+                    }
+
+                    if (existing.getDescription() != null) {
+                        genre.setDescription(existing.getDescription());
+                    }
+
+                    return ResponseEntity.ok(genreRepository.save(existing));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGenre(@PathVariable @Min(1) Long id) {
         if (!genreRepository.existsById(id)) {
