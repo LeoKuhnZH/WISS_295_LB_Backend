@@ -61,6 +61,36 @@ public class GameController {
         return ResponseEntity.ok(updatedGame);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Game> patchGame(
+            @PathVariable @Min(1) Long id,
+            @Valid @RequestBody Game game
+    )
+        {
+        return gameRepository.findById(id)
+                .map(existing -> {
+
+                    if (game.getTitle() != null) {
+                        existing.setTitle(game.getTitle());
+                    }
+
+                    if (game.getDescription() != null) {
+                        existing.setDescription(game.getDescription());
+                    }
+
+                    if (game.getRating() != null) {
+                        existing.setRating(game.getRating());
+                    }
+                    
+                    if (game.getGenres() != null) {
+                        existing.setGenres(game.getGenres());
+                    }
+
+                    return ResponseEntity.ok(gameRepository.save(existing));
+                })
+                .orElse(ResponseEntity.notFound().build());
+        }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGame(@PathVariable @Min(1) Long id) {
         if (!gameRepository.existsById(id)) {
