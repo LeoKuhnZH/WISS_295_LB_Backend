@@ -7,6 +7,7 @@ import wiss.m295_lb._95_lb_backend.model.connecting_table.key.UserGameKey;
 
 
 @Entity
+@Table(name = "user_game")
 public class UserGame {
     @EmbeddedId
     private UserGameKey id;
