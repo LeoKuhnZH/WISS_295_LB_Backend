@@ -104,12 +104,12 @@ public class GenreController {
         return genreRepository.findById(id)
                 .map(existing -> {
 
-                    if (existing.getName() != null) {
-                        genre.setName(existing.getName());
+                    if (genre.getName() != null) {
+                        existing.setName(genre.getName());
                     }
 
-                    if (existing.getDescription() != null) {
-                        genre.setDescription(existing.getDescription());
+                    if (genre.getDescription() != null) {
+                        existing.setDescription(genre.getDescription());
                     }
 
                     return ResponseEntity.ok(genreRepository.save(existing));
