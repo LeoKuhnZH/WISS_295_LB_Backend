@@ -12,6 +12,9 @@ import wiss.m295_lb._95_lb_backend.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type User controller.
+ */
 @Validated
 @RestController
 @RequestMapping("/api/user")
@@ -19,10 +22,21 @@ public class UserController {
 
     private final UserRepository userRepository;
 
+    /**
+     * Instantiates a new User controller.
+     *
+     * @param userRepository the user repository
+     */
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Find by id response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(
             @PathVariable @Min(1)
@@ -31,11 +45,22 @@ public class UserController {
         return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * Gets all users.
+     *
+     * @return the all users
+     */
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
+    /**
+     * Create user response entity.
+     *
+     * @param user the user
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<User> createUser(
             @Valid @RequestBody User user) {
@@ -43,6 +68,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
+    /**
+     * Update user response entity.
+     *
+     * @param id   the id
+     * @param user the user
+     * @return the response entity
+     */
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(
             @PathVariable @Min(1) Long id,
@@ -60,6 +92,13 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    /**
+     * Patch user response entity.
+     *
+     * @param id   the id
+     * @param user the user
+     * @return the response entity
+     */
     @PatchMapping("/{id}")
     public ResponseEntity<User> patchUser(
             @PathVariable @Min(1) Long id,
@@ -76,6 +115,12 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * Delete user response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable @Min(1) Long id) {
         if (!userRepository.existsById(id)) {

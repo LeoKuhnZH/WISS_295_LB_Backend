@@ -17,6 +17,9 @@ import wiss.m295_lb._95_lb_backend.repository.connecting_table.UserGameRepositor
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type User game controller.
+ */
 @Validated
 @RestController
 @RequestMapping("/api/user-game")
@@ -26,6 +29,13 @@ public class UserGameController {
     private final UserRepository userRepository;
     private final GameRepository gameRepository;
 
+    /**
+     * Instantiates a new User game controller.
+     *
+     * @param userGameRepository the user game repository
+     * @param userRepository     the user repository
+     * @param gameRepository     the game repository
+     */
     public UserGameController(
             UserGameRepository userGameRepository,
             UserRepository userRepository,
@@ -36,12 +46,18 @@ public class UserGameController {
         this.gameRepository = gameRepository;
     }
 
+    /**
+     * The type User game request.
+     */
     public record UserGameRequest(
             @Min(1) Long userId,
             @Min(1) Long gameId,
             @Min(0) Integer score
     ) {}
 
+    /**
+     * The type User game response.
+     */
     public record UserGameResponse(Long userId, Long gameId, Integer score) {}
 
     private static UserGameResponse toResponse(UserGame userGame) {
@@ -52,6 +68,13 @@ public class UserGameController {
         );
     }
 
+    /**
+     * Gets one.
+     *
+     * @param userId the user id
+     * @param gameId the game id
+     * @return the one
+     */
     @GetMapping("/{userId}/{gameId}")
     public ResponseEntity<UserGameResponse> getOne(
             @PathVariable @Min(1) Long userId,
@@ -62,6 +85,12 @@ public class UserGameController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * Gets by user.
+     *
+     * @param userId the user id
+     * @return the by user
+     */
     @PatchMapping("/by-user/{userId}")
     public ResponseEntity<List<UserGameResponse>> getByUser(@PathVariable @Min(1) Long userId) {
         List<UserGameResponse> result = userGameRepository.findByUser_UserId(userId)
@@ -71,6 +100,12 @@ public class UserGameController {
         return ResponseEntity.ok(result);
     }
 
+    /**
+     * Gets by game.
+     *
+     * @param gameId the game id
+     * @return the by game
+     */
     @GetMapping("/by-game/{gameId}")
     public ResponseEntity<List<UserGameResponse>> getByGame(@PathVariable @Min(1) Long gameId) {
         List<UserGameResponse> result = userGameRepository.findByGame_GameId(gameId)
@@ -80,6 +115,12 @@ public class UserGameController {
         return ResponseEntity.ok(result);
     }
 
+    /**
+     * Create response entity.
+     *
+     * @param request the request
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<UserGameResponse> create(@Valid @RequestBody UserGameRequest request) {
         Optional<User> userOpt = userRepository.findById(request.userId());
@@ -107,6 +148,14 @@ public class UserGameController {
         return ResponseEntity.status(HttpStatus.CREATED).body(toResponse(created));
     }
 
+    /**
+     * Update score response entity.
+     *
+     * @param userId  the user id
+     * @param gameId  the game id
+     * @param request the request
+     * @return the response entity
+     */
     @PutMapping("/{userId}/{gameId}")
     public ResponseEntity<UserGameResponse> updateScore(
             @PathVariable @Min(1) Long userId,
@@ -124,6 +173,13 @@ public class UserGameController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * Delete response entity.
+     *
+     * @param userId the user id
+     * @param gameId the game id
+     * @return the response entity
+     */
     @DeleteMapping("/userId}/{gameId}")
     public ResponseEntity<Void> delete(
             @PathVariable @Min(1) Long userId,
