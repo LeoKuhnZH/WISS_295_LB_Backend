@@ -99,7 +99,7 @@ public class GenreController {
     @PatchMapping("/{id}")
     public ResponseEntity<Genre> patchGenre(
             @PathVariable @Min(1) Long id,
-            @Valid @RequestBody Genre genre
+            @RequestBody Genre genre
     ) {
         return genreRepository.findById(id)
                 .map(existing -> {

@@ -103,7 +103,7 @@ public class GameController {
     @PatchMapping("/{id}")
     public ResponseEntity<Game> patchGame(
             @PathVariable @Min(1) Long id,
-            @Valid @RequestBody Game game
+            @RequestBody Game game
     )
         {
         return gameRepository.findById(id)
