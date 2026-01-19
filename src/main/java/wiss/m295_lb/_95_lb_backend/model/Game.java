@@ -3,6 +3,7 @@ package wiss.m295_lb._95_lb_backend.model;
 import jakarta.persistence.*;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * This is the POJO for the "game" table
@@ -13,7 +14,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id", nullable = false)
-    private Integer game_id;
+    private Long game_id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -24,11 +25,19 @@ public class Game {
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
-    public Integer getGame_id() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_genre",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<Genre> genres;
+
+    public Long getGame_id() {
         return game_id;
     }
 
-    public void setGame_id(Integer game_id) {
+    public void setGame_id(Long game_id) {
         this.game_id = game_id;
     }
 

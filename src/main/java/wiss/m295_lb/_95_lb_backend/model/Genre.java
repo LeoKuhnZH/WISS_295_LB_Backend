@@ -3,6 +3,7 @@ package wiss.m295_lb._95_lb_backend.model;
 import jakarta.persistence.*;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * This is the POJO for the "genre" table
@@ -13,19 +14,22 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id", nullable = false)
-    private Integer genre_id;
+    private Long genre_id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description", nullable = true)
-    private Optional<String> description;
+    private String description;
 
-    public Integer getGenre_id() {
+    @ManyToMany(mappedBy = "genres")
+    private Set<Game> games;
+
+    public Long getGenre_id() {
         return genre_id;
     }
 
-    public void setGenre_id(Integer genre_id) {
+    public void setGenre_id(Long genre_id) {
         this.genre_id = genre_id;
     }
 
@@ -37,11 +41,11 @@ public class Genre {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description.orElse("");
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : Optional.of(description);
+        this.description = description;
     }
 }
