@@ -12,9 +12,6 @@ import wiss.m295_lb._95_lb_backend.repository.GenreRepository;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * The type Genre controller.
- */
 @Validated
 @RestController
 @RequestMapping("/api/genre")
@@ -22,43 +19,21 @@ public class GenreController {
 
     private final GenreRepository genreRepository;
 
-    /**
-     * Instantiates a new Genre controller.
-     *
-     * @param genreRepository the genre repository
-     */
     public GenreController(GenreRepository genreRepository) {
         this.genreRepository = genreRepository;
     }
 
-    /**
-     * Gets genre by id.
-     *
-     * @param id the id
-     * @return the genre by id
-     */
     @GetMapping("/{id}")
     public ResponseEntity<Genre> getGenreById(@PathVariable @Min(1) Long id) {
         Optional<Genre> genre = genreRepository.findById(id);
         return genre.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Gets all genre.
-     *
-     * @return the all genre
-     */
     @GetMapping
     public ResponseEntity<List<Genre>> getAllGenre() {
         return ResponseEntity.ok(genreRepository.findAll());
     }
 
-    /**
-     * Create genre response entity.
-     *
-     * @param genre the genre
-     * @return the response entity
-     */
     @PostMapping
     public ResponseEntity<Genre> createGenre(
             @Valid @RequestBody Genre genre) {
@@ -66,13 +41,6 @@ public class GenreController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newGenre);
     }
 
-    /**
-     * Update genre response entity.
-     *
-     * @param id    the id
-     * @param genre the genre
-     * @return the response entity
-     */
     @PutMapping("/{id}")
     public ResponseEntity<Genre> updateGenre(
             @PathVariable @Min(1) Long id,
@@ -89,13 +57,6 @@ public class GenreController {
         return ResponseEntity.ok(updatedGenre);
     }
 
-    /**
-     * Patch genre response entity.
-     *
-     * @param id    the id
-     * @param genre the genre
-     * @return the response entity
-     */
     @PatchMapping("/{id}")
     public ResponseEntity<Genre> patchGenre(
             @PathVariable @Min(1) Long id,
@@ -117,12 +78,6 @@ public class GenreController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Delete genre response entity.
-     *
-     * @param id the id
-     * @return the response entity
-     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGenre(@PathVariable @Min(1) Long id) {
         if (!genreRepository.existsById(id)) {
