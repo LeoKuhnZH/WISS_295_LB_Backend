@@ -32,7 +32,7 @@ public class GameController {
     }
 
     /**
-     * Gets game.
+     * Gets a Game.
      *
      * @param id the id
      * @return the game
@@ -54,7 +54,7 @@ public class GameController {
     }
 
     /**
-     * Create game response entity.
+     * Create a new Game
      *
      * @param game the game
      * @return the response entity
@@ -67,7 +67,7 @@ public class GameController {
     }
 
     /**
-     * Update game response entity.
+     * Update the Game.
      *
      * @param id   the id
      * @param game the game
@@ -94,7 +94,7 @@ public class GameController {
     }
 
     /**
-     * Patch game response entity.
+     * Patch the Game.
      *
      * @param id   the id
      * @param game the game
@@ -130,7 +130,7 @@ public class GameController {
     }
 
     /**
-     * Delete game response entity.
+     * Delete the Game.
      *
      * @param id the id
      * @return the response entity

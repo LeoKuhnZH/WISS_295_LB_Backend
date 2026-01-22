@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The type User game controller.
+ * <p>The type User game controller.</p>
  */
 @Validated
 @RestController
@@ -30,7 +30,7 @@ public class UserGameController {
     private final GameRepository gameRepository;
 
     /**
-     * Instantiates a new User game controller.
+     * <p>Instantiates a new User game controller.</p>
      *
      * @param userGameRepository the user game repository
      * @param userRepository     the user repository
@@ -47,7 +47,7 @@ public class UserGameController {
     }
 
     /**
-     * The type User game request.
+     * <p>Defines the shape of a Request.</p>
      */
     public record UserGameRequest(
             @Min(1) Long userId,
@@ -56,9 +56,16 @@ public class UserGameController {
     ) {}
 
     /**
-     * The type User game response.
+     * <p>Defines the shape of a Response.</p>
      */
     public record UserGameResponse(Long userId, Long gameId, Integer score) {}
+
+    /**
+     * <p>makes the model userGame into a response</p>
+     *
+     * @param userGame
+     * @return
+     */
 
     private static UserGameResponse toResponse(UserGame userGame) {
         return new UserGameResponse(
@@ -69,7 +76,7 @@ public class UserGameController {
     }
 
     /**
-     * Gets one.
+     * <p>Returns you an userGame (properly formatted) as a response defined by both id's.</p>
      *
      * @param userId the user id
      * @param gameId the game id
@@ -86,7 +93,7 @@ public class UserGameController {
     }
 
     /**
-     * Gets by user.
+     * <p>Returns you a List of all the relationships the user with the id has.</p>
      *
      * @param userId the user id
      * @return the by user
@@ -101,7 +108,7 @@ public class UserGameController {
     }
 
     /**
-     * Gets by game.
+     * <p>Returns you a List of all the relationships the game with the id has.</p>
      *
      * @param gameId the game id
      * @return the by game
@@ -116,7 +123,7 @@ public class UserGameController {
     }
 
     /**
-     * Create response entity.
+     * <p>Creates a new Relationship of User and Game</p>
      *
      * @param request the request
      * @return the response entity
@@ -149,7 +156,7 @@ public class UserGameController {
     }
 
     /**
-     * Update score response entity.
+     * <p>Update score in a defined UserGame relationship.</p>
      *
      * @param userId  the user id
      * @param gameId  the game id
@@ -174,7 +181,7 @@ public class UserGameController {
     }
 
     /**
-     * Delete response entity.
+     * <p>deletes the UserGame relationship</p>
      *
      * @param userId the user id
      * @param gameId the game id

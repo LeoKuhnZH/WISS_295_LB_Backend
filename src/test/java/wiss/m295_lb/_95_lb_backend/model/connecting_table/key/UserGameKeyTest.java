@@ -4,28 +4,49 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User game key test.
+ */
 class UserGameKeyTest {
 
+    /**
+     * Gets user id.
+     */
     @Test
     void getUserId() {
     }
 
+    /**
+     * Sets user id.
+     */
     @Test
     void setUserId() {
     }
 
+    /**
+     * Gets game id.
+     */
     @Test
     void getGameId() {
     }
 
+    /**
+     * Sets game id.
+     */
     @Test
     void setGameId() {
     }
 
+    /**
+     * Test equals.
+     */
     @Test
     void testEquals() {
     }
 
+    /**
+     * Test hash code.
+     */
     @Test
     void testHashCode() {
     }

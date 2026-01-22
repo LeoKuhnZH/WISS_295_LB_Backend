@@ -4,28 +4,49 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Game controller test.
+ */
 class GameControllerTest {
 
+    /**
+     * Gets game.
+     */
     @Test
     void getGame() {
     }
 
+    /**
+     * Gets all games.
+     */
     @Test
     void getAllGames() {
     }
 
+    /**
+     * Create game.
+     */
     @Test
     void createGame() {
     }
 
+    /**
+     * Update game.
+     */
     @Test
     void updateGame() {
     }
 
+    /**
+     * Patch game.
+     */
     @Test
     void patchGame() {
     }
 
+    /**
+     * Delete game.
+     */
     @Test
     void deleteGame() {
     }
