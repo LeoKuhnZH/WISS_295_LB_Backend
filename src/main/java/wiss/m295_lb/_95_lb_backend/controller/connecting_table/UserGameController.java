@@ -47,20 +47,6 @@ public class UserGameController {
     }
 
     /**
-     * <p>Defines the shape of a Request.</p>
-     */
-    public record UserGameRequest(
-            @Min(1) Long userId,
-            @Min(1) Long gameId,
-            @Min(0) Integer score
-    ) {}
-
-    /**
-     * <p>Defines the shape of a Response.</p>
-     */
-    public record UserGameResponse(Long userId, Long gameId, Integer score) {}
-
-    /**
      * <p>makes the model userGame into a response</p>
      *
      * @param userGame
@@ -202,5 +188,21 @@ public class UserGameController {
 
         userGameRepository.deleteById(key);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * <p>Defines the shape of a Request.</p>
+     */
+    public record UserGameRequest(
+            @Min(1) Long userId,
+            @Min(1) Long gameId,
+            @Min(0) Integer score
+    ) {
+    }
+
+    /**
+     * <p>Defines the shape of a Response.</p>
+     */
+    public record UserGameResponse(Long userId, Long gameId, Integer score) {
     }
 }
