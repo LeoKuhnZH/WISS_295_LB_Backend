@@ -19,7 +19,7 @@ public class User {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @OneToMany(mappedBy = "user",  orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private Set<UserGame> games;
 
     /**

@@ -1,5 +1,6 @@
 package wiss.m295_lb._95_lb_backend.model.connecting_table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import wiss.m295_lb._95_lb_backend.model.Game;
 import wiss.m295_lb._95_lb_backend.model.User;
@@ -15,11 +16,13 @@ public class UserGame {
     @EmbeddedId
     private UserGameKey id;
 
+    @JsonBackReference
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonBackReference
     @ManyToOne
     @MapsId("gameId")
     @JoinColumn(name = "game_id")
