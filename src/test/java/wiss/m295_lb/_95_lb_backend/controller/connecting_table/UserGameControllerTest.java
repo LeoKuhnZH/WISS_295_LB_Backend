@@ -2,8 +2,6 @@ package wiss.m295_lb._95_lb_backend.controller.connecting_table;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * The type User game controller test.
  */

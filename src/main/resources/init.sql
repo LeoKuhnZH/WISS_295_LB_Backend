@@ -62,47 +62,48 @@ ALTER TABLE `user_game`
 USE games;
 
 -- Genres
-INSERT INTO genre (name, description) VALUES
-                                          ('Action', 'Fast-paced games with combat and reflex challenges'),
-                                          ('Adventure', 'Story-driven exploration games'),
-                                          ('RPG', 'Role-playing games with character progression'),
-                                          ('Strategy', 'Games focused on planning and tactics'),
-                                          ('Sports', 'Sports simulation and arcade games');
+INSERT INTO genre (name, description)
+VALUES ('Action', 'Fast-paced games with combat and reflex challenges'),
+       ('Adventure', 'Story-driven exploration games'),
+       ('RPG', 'Role-playing games with character progression'),
+       ('Strategy', 'Games focused on planning and tactics'),
+       ('Sports', 'Sports simulation and arcade games');
 
 -- Games
-INSERT INTO game (title, description, rating) VALUES
-                                                  ('Shadow Strike', 'A stealth-based action game', 85),
-                                                  ('Kingdoms of Eldoria', 'An epic fantasy RPG', 92),
-                                                  ('Galactic Tactics', 'Turn-based space strategy game', 88),
-                                                  ('Street Champions', 'Urban sports competition game', 78),
-                                                  ('Lost Realms', 'Adventure game set in ancient ruins', 81);
+INSERT INTO game (title, description, rating)
+VALUES ('Shadow Strike', 'A stealth-based action game', 85),
+       ('Kingdoms of Eldoria', 'An epic fantasy RPG', 92),
+       ('Galactic Tactics', 'Turn-based space strategy game', 88),
+       ('Street Champions', 'Urban sports competition game', 78),
+       ('Lost Realms', 'Adventure game set in ancient ruins', 81);
 
 -- Users
-INSERT INTO user (username) VALUES
-                                ('alice'),
-                                ('bob'),
-                                ('charlie'),
-                                ('diana'),
-                                ('eve');
+INSERT INTO user (username)
+VALUES ('alice'),
+       ('bob'),
+       ('charlie'),
+       ('diana'),
+       ('eve');
 
 -- Game ↔ Genre relationships
-INSERT INTO game_genre (game_id, genre_id) VALUES
-                                               (1, 1), -- Shadow Strike → Action
-                                               (2, 3), -- Kingdoms of Eldoria → RPG
-                                               (3, 4), -- Galactic Tactics → Strategy
-                                               (4, 5), -- Street Champions → Sports
-                                               (5, 2), -- Lost Realms → Adventure
-                                               (2, 2), -- Kingdoms of Eldoria → Adventure
-                                               (1, 2); -- Shadow Strike → Adventure
+INSERT INTO game_genre (game_id, genre_id)
+VALUES (1, 1), -- Shadow Strike → Action
+       (2, 3), -- Kingdoms of Eldoria → RPG
+       (3, 4), -- Galactic Tactics → Strategy
+       (4, 5), -- Street Champions → Sports
+       (5, 2), -- Lost Realms → Adventure
+       (2, 2), -- Kingdoms of Eldoria → Adventure
+       (1, 2);
+-- Shadow Strike → Adventure
 
 -- User ↔ Game scores
-INSERT INTO user_game (user_id, game_id, score) VALUES
-                                                    (1, 1, 90),
-                                                    (1, 2, 95),
-                                                    (2, 1, 70),
-                                                    (2, 3, 85),
-                                                    (3, 2, 88),
-                                                    (3, 5, 80),
-                                                    (4, 4, 75),
-                                                    (5, 3, 92),
-                                                    (5, 5, 86);
+INSERT INTO user_game (user_id, game_id, score)
+VALUES (1, 1, 90),
+       (1, 2, 95),
+       (2, 1, 70),
+       (2, 3, 85),
+       (3, 2, 88),
+       (3, 5, 80),
+       (4, 4, 75),
+       (5, 3, 92),
+       (5, 5, 86);
