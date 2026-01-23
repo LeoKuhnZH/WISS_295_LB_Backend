@@ -84,7 +84,7 @@ public class UserGameController {
      * @param userId the user id
      * @return the by user
      */
-    @PatchMapping("/by-user/{userId}")
+    @GetMapping("/by-user/{userId}")
     public ResponseEntity<List<UserGameResponse>> getByUser(@PathVariable @Min(1) Long userId) {
         List<UserGameResponse> result = userGameRepository.findByUser_UserId(userId)
                 .stream()
