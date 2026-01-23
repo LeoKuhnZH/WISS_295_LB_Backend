@@ -33,7 +33,7 @@ public class Game {
     )
     private Set<Genre> genres;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "game", orphanRemoval = true)
     private Set<UserGame> users;
 
     /**
