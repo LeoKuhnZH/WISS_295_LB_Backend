@@ -1,5 +1,6 @@
 package wiss.m295_lb._95_lb_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -21,6 +22,7 @@ public class Genre {
     @Column(name = "description", nullable = true)
     private String description;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "genres")
     private Set<Game> games;
 

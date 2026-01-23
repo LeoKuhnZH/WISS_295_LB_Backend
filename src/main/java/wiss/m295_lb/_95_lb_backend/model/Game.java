@@ -1,5 +1,6 @@
 package wiss.m295_lb._95_lb_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import wiss.m295_lb._95_lb_backend.model.connecting_table.UserGame;
 
@@ -25,6 +26,7 @@ public class Game {
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "game_genre",
