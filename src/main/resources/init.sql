@@ -58,6 +58,23 @@ ALTER TABLE `user_game`
     ADD CONSTRAINT `fk_user_game_game`
         FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`);
 
+ALTER TABLE game_genre
+    DROP FOREIGN KEY fk_game_genre_genre;
+
+ALTER TABLE game_genre
+    ADD CONSTRAINT fk_game_genre_genre
+        FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+            ON DELETE CASCADE;
+
+ALTER TABLE game_genre
+    DROP FOREIGN KEY fk_game_genre_game;
+
+ALTER TABLE game_genre
+    ADD CONSTRAINT fk_game_genre_game
+        FOREIGN KEY (game_id) REFERENCES game(game_id)
+            ON DELETE CASCADE;
+
+
 
 USE games;
 
