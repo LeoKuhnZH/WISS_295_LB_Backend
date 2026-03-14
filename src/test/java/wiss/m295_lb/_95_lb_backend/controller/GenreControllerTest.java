@@ -1,5 +1,6 @@
 package wiss.m295_lb._95_lb_backend.controller;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,10 +16,12 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class GenreControllerTest {
+    private static final String A_DESCRIPTION = "a_description";
+    private static final String A_NAME = "a_name";
     private final static Long  GENRE_ID = 7L;
 
     @InjectMocks
@@ -27,9 +30,18 @@ class GenreControllerTest {
     @Mock
     private GenreRepository genreRepository;
     @Mock
-    private Genre genre, savedGenre;
+    private Genre genre, savedGenre, existingGenre;
     @Mock
     private List<Genre> genres;
+
+    @AfterEach
+    void afterEight() {
+        verifyNoMoreInteractions(
+                genreRepository,
+                genre, savedGenre, existingGenre,
+                genres
+        );
+    }
 
     @Test
     void getGenreById_found_genre() {
@@ -39,10 +51,11 @@ class GenreControllerTest {
         ResponseEntity<Genre> actual = testee.getGenreById(GENRE_ID);
         // assert
         assertThat(actual.getBody()).isEqualTo(genre);
+        assertEquals(HttpStatus.OK, actual.getStatusCode());
     }
 
     @Test
-    void getGenreById_notFound_exception() {
+    void getGenreById_notFound_notFound() {
         // arrange
 
         // act
@@ -50,6 +63,7 @@ class GenreControllerTest {
         // assert
         assertThat(actual.getBody()).isNull();
         assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        verify(genreRepository).findById(GENRE_ID);
     }
 
 
@@ -61,6 +75,7 @@ class GenreControllerTest {
         ResponseEntity<List<Genre>> actual = testee.getAllGenre();
         // assert
         assertEquals(genres, actual.getBody());
+        assertEquals(HttpStatus.OK, actual.getStatusCode());
     }
 
     @Test
@@ -93,6 +108,7 @@ class GenreControllerTest {
         // assert
         assertThat(actual.getBody()).isNull();
         assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        verify(genreRepository).findById(GENRE_ID);
     }
 
     @Test
