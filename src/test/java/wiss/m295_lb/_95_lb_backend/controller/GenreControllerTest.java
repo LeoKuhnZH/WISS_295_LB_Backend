@@ -85,6 +85,17 @@ class GenreControllerTest {
     }
 
     @Test
+    void updateGenre_notFound_notFound() {
+        // arrange
+
+        // act
+        ResponseEntity<Genre> actual = testee.updateGenre(GENRE_ID, genre);
+        // assert
+        assertThat(actual.getBody()).isNull();
+        assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+    @Test
     void patchGenre() {
         // arrange
 
