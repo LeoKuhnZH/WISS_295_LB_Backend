@@ -6,7 +6,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import wiss.m295_lb._95_lb_backend.model.Genre;
 import wiss.m295_lb._95_lb_backend.repository.GenreRepository;
@@ -49,7 +48,6 @@ class GenreControllerTest {
         // act
         ResponseEntity<Genre> actual = testee.getGenreById(GENRE_ID);
         // assert
-
         assertThat(actual.getBody()).isNull();
         assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
@@ -58,11 +56,11 @@ class GenreControllerTest {
     @Test
     void getAllGenre() {
         // arrange
-
+        when(genreRepository.findAll()).thenReturn(genres);
         // act
-
+        ResponseEntity<List<Genre>> actual = testee.getAllGenre();
         // assert
-
+        assertEquals(genres, actual.getBody());
     }
 
     @Test
