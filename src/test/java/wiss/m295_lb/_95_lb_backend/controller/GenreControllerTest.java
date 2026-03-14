@@ -43,18 +43,18 @@ class GenreControllerTest {
     }
 
     @Test
-    void getGenreById() {
+    void getGenreById_notFound_exception() {
         // arrange
 
         // act
-
+        ResponseEntity<Genre> actual = testee.getGenreById(GENRE_ID);
         // assert
 
+        assertThat(actual.getBody()).isNull();
+        assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
-    /**
-     * Gets all genre.
-     */
+
     @Test
     void getAllGenre() {
         // arrange
