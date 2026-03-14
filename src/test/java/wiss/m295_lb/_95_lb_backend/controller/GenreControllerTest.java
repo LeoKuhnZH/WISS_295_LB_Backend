@@ -27,7 +27,7 @@ class GenreControllerTest {
     @Mock
     private GenreRepository genreRepository;
     @Mock
-    private Genre genre;
+    private Genre genre, savedGenre;
     @Mock
     private List<Genre> genres;
 
@@ -66,11 +66,12 @@ class GenreControllerTest {
     @Test
     void createGenre() {
         // arrange
-
+        when(genreRepository.save(genre)).thenReturn(savedGenre);
         // act
-
+        ResponseEntity<Genre> actual = testee.createGenre(genre);
         // assert
-
+        assertEquals(savedGenre, actual.getBody());
+        assertEquals(HttpStatus.CREATED, actual.getStatusCode());
     }
 
     @Test
