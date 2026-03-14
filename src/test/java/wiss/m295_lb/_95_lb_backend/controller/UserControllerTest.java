@@ -7,9 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import wiss.m295_lb._95_lb_backend.repository.UserRepository;
 
-/**
- * The type User controller test.
- */
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
     @InjectMocks
@@ -18,9 +15,6 @@ class UserControllerTest {
     @Mock
     private UserRepository userRepository;
 
-    /**
-     * Find by id.
-     */
     @Test
     void findById() {
         // arrange
@@ -31,9 +25,6 @@ class UserControllerTest {
 
     }
 
-    /**
-     * Gets all users.
-     */
     @Test
     void getAllUsers() {
         // arrange
@@ -44,9 +35,6 @@ class UserControllerTest {
 
     }
 
-    /**
-     * Create user.
-     */
     @Test
     void createUser() {
         // arrange
@@ -57,9 +45,6 @@ class UserControllerTest {
 
     }
 
-    /**
-     * Update user.
-     */
     @Test
     void updateUser() {
         // arrange
@@ -70,9 +55,6 @@ class UserControllerTest {
 
     }
 
-    /**
-     * Patch user.
-     */
     @Test
     void patchUser() {
         // arrange
@@ -83,9 +65,6 @@ class UserControllerTest {
 
     }
 
-    /**
-     * Delete user.
-     */
     @Test
     void deleteUser() {
         // arrange

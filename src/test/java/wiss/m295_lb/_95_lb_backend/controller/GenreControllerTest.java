@@ -44,9 +44,6 @@ class GenreControllerTest {
 
     }
 
-    /**
-     * Create genre.
-     */
     @Test
     void createGenre() {
         // arrange
@@ -57,9 +54,6 @@ class GenreControllerTest {
 
     }
 
-    /**
-     * Update genre.
-     */
     @Test
     void updateGenre() {
         // arrange
@@ -70,9 +64,6 @@ class GenreControllerTest {
 
     }
 
-    /**
-     * Patch genre.
-     */
     @Test
     void patchGenre() {
         // arrange
@@ -83,9 +74,6 @@ class GenreControllerTest {
 
     }
 
-    /**
-     * Delete genre.
-     */
     @Test
     void deleteGenre() {
         // arrange

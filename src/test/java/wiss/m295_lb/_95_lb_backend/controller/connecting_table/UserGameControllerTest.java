@@ -9,9 +9,6 @@ import wiss.m295_lb._95_lb_backend.repository.GameRepository;
 import wiss.m295_lb._95_lb_backend.repository.UserRepository;
 import wiss.m295_lb._95_lb_backend.repository.connecting_table.UserGameRepository;
 
-/**
- * The type User game controller test.
- */
 @ExtendWith(MockitoExtension.class)
 class UserGameControllerTest {
     @InjectMocks
@@ -24,9 +21,6 @@ class UserGameControllerTest {
     @Mock
     private GameRepository gameRepository;
 
-    /**
-     * Gets one.
-     */
     @Test
     void getOne() {
         // arrange
@@ -37,9 +31,6 @@ class UserGameControllerTest {
 
     }
 
-    /**
-     * Gets by user.
-     */
     @Test
     void getByUser() {
         // arrange
@@ -50,9 +41,6 @@ class UserGameControllerTest {
 
     }
 
-    /**
-     * Gets by game.
-     */
     @Test
     void getByGame() {
         // arrange
@@ -63,9 +51,6 @@ class UserGameControllerTest {
 
     }
 
-    /**
-     * Create.
-     */
     @Test
     void create() {
         // arrange
@@ -76,9 +61,6 @@ class UserGameControllerTest {
 
     }
 
-    /**
-     * Update score.
-     */
     @Test
     void updateScore() {
         // arrange
@@ -89,9 +71,6 @@ class UserGameControllerTest {
 
     }
 
-    /**
-     * Delete.
-     */
     @Test
     void delete() {
         // arrange

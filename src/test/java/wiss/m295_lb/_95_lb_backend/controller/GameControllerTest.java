@@ -7,9 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import wiss.m295_lb._95_lb_backend.repository.GameRepository;
 
-/**
- * The type Game controller test.
- */
 @ExtendWith(MockitoExtension.class)
 class GameControllerTest {
     @InjectMocks
@@ -18,9 +15,6 @@ class GameControllerTest {
     @Mock
     private GameRepository gameRepository;
 
-    /**
-     * Gets game.
-     */
     @Test
     void getGame() {
         // arrange
@@ -31,9 +25,6 @@ class GameControllerTest {
 
     }
 
-    /**
-     * Gets all games.
-     */
     @Test
     void getAllGames() {
         // arrange
@@ -44,9 +35,6 @@ class GameControllerTest {
 
     }
 
-    /**
-     * Create game.
-     */
     @Test
     void createGame() {
         // arrange
@@ -57,9 +45,6 @@ class GameControllerTest {
 
     }
 
-    /**
-     * Update game.
-     */
     @Test
     void updateGame() {
         // arrange
@@ -70,9 +55,6 @@ class GameControllerTest {
 
     }
 
-    /**
-     * Patch game.
-     */
     @Test
     void patchGame() {
         // arrange
@@ -83,9 +65,6 @@ class GameControllerTest {
 
     }
 
-    /**
-     * Delete game.
-     */
     @Test
     void deleteGame() {
         // arrange
