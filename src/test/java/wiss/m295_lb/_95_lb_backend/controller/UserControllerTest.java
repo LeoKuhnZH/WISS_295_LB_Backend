@@ -1,17 +1,34 @@
 package wiss.m295_lb._95_lb_backend.controller;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import wiss.m295_lb._95_lb_backend.repository.UserRepository;
 
 /**
  * The type User controller test.
  */
+@ExtendWith(MockitoExtension.class)
 class UserControllerTest {
+    @InjectMocks
+    private UserController testee;
+
+    @Mock
+    private UserRepository userRepository;
 
     /**
      * Find by id.
      */
     @Test
     void findById() {
+        // arrange
+
+        // act
+
+        // assert
+
     }
 
     /**
@@ -19,6 +36,12 @@ class UserControllerTest {
      */
     @Test
     void getAllUsers() {
+        // arrange
+
+        // act
+
+        // assert
+
     }
 
     /**
@@ -26,6 +49,12 @@ class UserControllerTest {
      */
     @Test
     void createUser() {
+        // arrange
+
+        // act
+
+        // assert
+
     }
 
     /**
@@ -33,6 +62,12 @@ class UserControllerTest {
      */
     @Test
     void updateUser() {
+        // arrange
+
+        // act
+
+        // assert
+
     }
 
     /**
@@ -40,6 +75,12 @@ class UserControllerTest {
      */
     @Test
     void patchUser() {
+        // arrange
+
+        // act
+
+        // assert
+
     }
 
     /**
@@ -47,5 +88,11 @@ class UserControllerTest {
      */
     @Test
     void deleteUser() {
+        // arrange
+
+        // act
+
+        // assert
+
     }
 }
