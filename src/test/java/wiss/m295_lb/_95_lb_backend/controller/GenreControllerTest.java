@@ -90,13 +90,19 @@ class GenreControllerTest {
     }
 
     @Test
-    void updateGenre() {
+    void updateGenre_found_updated() {
         // arrange
-
+        when(genreRepository.findById(GENRE_ID)).thenReturn(Optional.of(existingGenre));
+        when(genre.getName()).thenReturn(A_NAME);
+        when(genre.getDescription()).thenReturn(A_DESCRIPTION);
+        when(genreRepository.save(existingGenre)).thenReturn(savedGenre);
         // act
-
+        ResponseEntity<Genre> actual = testee.updateGenre(GENRE_ID, genre);
         // assert
-
+        assertThat(actual.getBody()).isEqualTo(savedGenre);
+        assertEquals(HttpStatus.OK, actual.getStatusCode());
+        verify(existingGenre).setName(A_NAME);
+        verify(existingGenre).setDescription(A_DESCRIPTION);
     }
 
     @Test
