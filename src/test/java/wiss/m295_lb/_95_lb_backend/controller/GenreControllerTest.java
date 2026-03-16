@@ -135,5 +135,15 @@ class GenreControllerTest {
 
         // assert
 
+    @Test
+    void deleteGenre_notFound_notFound() {
+        // arrange
+
+        // act
+        ResponseEntity<Void> actual = testee.deleteGenre(GENRE_ID);
+        // assert
+        assertThat(actual.getBody()).isNull();
+        assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        verify(genreRepository).existsById(GENRE_ID);
     }
 }
