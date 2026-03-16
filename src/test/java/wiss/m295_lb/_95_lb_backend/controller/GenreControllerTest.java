@@ -128,12 +128,15 @@ class GenreControllerTest {
     }
 
     @Test
-    void deleteGenre() {
+    void deleteGenre_found_deleted() {
         // arrange
-
+        when(genreRepository.existsById(GENRE_ID)).thenReturn(true);
         // act
-
+        ResponseEntity<Void> actual = testee.deleteGenre(GENRE_ID);
         // assert
+        assertEquals(HttpStatus.NO_CONTENT, actual.getStatusCode());
+        verify(genreRepository).deleteById(GENRE_ID);
+    }
 
     @Test
     void deleteGenre_notFound_notFound() {
