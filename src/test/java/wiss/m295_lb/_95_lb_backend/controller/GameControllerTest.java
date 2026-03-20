@@ -64,11 +64,12 @@ class GameControllerTest {
     @Test
     void getAllGames() {
         // arrange
-
+        when(gameRepository.findAll()).thenReturn(games);
         // act
-
+        ResponseEntity<List<Game>> actual = testee.getAllGames();
         // assert
-
+        assertEquals(games,actual.getBody());
+        assertEquals(HttpStatus.OK, actual.getStatusCode());
     }
 
     @Test
