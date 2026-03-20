@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import wiss.m295_lb._95_lb_backend.model.Game;
 import wiss.m295_lb._95_lb_backend.repository.GameRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class GameControllerTest {
@@ -27,7 +27,9 @@ class GameControllerTest {
     @Mock
     private GameRepository gameRepository;
     @Mock
-    private Game game;
+    private Game game, savedGame;
+    @Mock
+    private List<Game> games;
 
     @AfterEach
     void afterEight() {
@@ -45,6 +47,18 @@ class GameControllerTest {
         // assert
         assertThat(actual.getBody()).isEqualTo(game);
         assertEquals(HttpStatus.OK, actual.getStatusCode());
+    }
+
+    @Test
+    void getGame_notFound_notFound() {
+        // arrange
+
+        // act
+        ResponseEntity<Game> actual = testee.getGame(GAME_ID);
+        // assert
+        assertThat(actual.getBody()).isNull();
+        assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        verify(gameRepository).findById(GAME_ID);
     }
 
     @Test
