@@ -16,7 +16,17 @@ class UserControllerTest {
     private UserRepository userRepository;
 
     @Test
-    void findById() {
+    void findById_found_user() {
+        // arrange
+
+        // act
+
+        // assert
+
+    }
+
+    @Test
+    void findById_notFound_notFound() {
         // arrange
 
         // act
