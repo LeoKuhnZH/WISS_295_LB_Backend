@@ -138,12 +138,25 @@ class GameControllerTest {
     }
 
     @Test
-    void deleteGame() {
+    void deleteGame_found_deleted() {
+        // arrange
+        when(gameRepository.existsById(GAME_ID)).thenReturn(true);
+        // act
+        ResponseEntity<Void> actual = testee.deleteGame(GAME_ID);
+        // assert
+        assertEquals(HttpStatus.NO_CONTENT, actual.getStatusCode());
+        verify(gameRepository).deleteById(GAME_ID);
+    }
+
+    @Test
+    void deleteGame_notFound_notFound() {
         // arrange
 
         // act
-
+        ResponseEntity<Void> actual = testee.deleteGame(GAME_ID);
         // assert
-
+        assertThat(actual.getBody()).isNull();
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
+        verify(gameRepository).existsById(GAME_ID);
     }
 }
