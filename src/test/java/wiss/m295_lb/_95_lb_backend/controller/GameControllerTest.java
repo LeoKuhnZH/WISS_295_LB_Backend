@@ -9,10 +9,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import wiss.m295_lb._95_lb_backend.model.Game;
+import wiss.m295_lb._95_lb_backend.model.Genre;
 import wiss.m295_lb._95_lb_backend.repository.GameRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,21 +22,31 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class GameControllerTest {
+    private static final String A_DESCRIPTION = "a_description";
+    private static final String A_TITLE = "a_name";
+    private static final Integer A_RATING = 2;
     public static final long GAME_ID = 7L;
+
     @InjectMocks
     private GameController testee;
 
     @Mock
     private GameRepository gameRepository;
     @Mock
-    private Game game, savedGame;
+    private Game game, savedGame, existingGame;
     @Mock
     private List<Game> games;
+    @Mock
+    private Set<Genre> genres;
+
 
     @AfterEach
     void afterEight() {
         verifyNoMoreInteractions(
-                gameRepository
+                gameRepository,
+                game,savedGame,existingGame,
+                games,
+                genres
         );
     }
 
@@ -84,13 +96,35 @@ class GameControllerTest {
     }
 
     @Test
-    void updateGame() {
+    void updateGame_found_updated() {
+        // arrange
+        when(gameRepository.findById(GAME_ID)).thenReturn(Optional.of(existingGame));
+        when(game.getTitle()).thenReturn(A_TITLE);
+        when(game.getDescription()).thenReturn(A_DESCRIPTION);
+        when(game.getRating()).thenReturn(A_RATING);
+        when(game.getGenres()).thenReturn(genres);
+        when(gameRepository.save(existingGame)).thenReturn(savedGame);
+        // act
+        ResponseEntity<Game> actual = testee.updateGame(GAME_ID, game);
+        // assert
+        assertThat(actual.getBody()).isEqualTo(savedGame);
+        assertEquals(HttpStatus.OK, actual.getStatusCode());
+        verify(existingGame).setTitle(A_TITLE);
+        verify(existingGame).setDescription(A_DESCRIPTION);
+        verify(existingGame).setRating(A_RATING);
+        verify(existingGame).setGenres(genres);
+    }
+
+    @Test
+    void updateGame_notFound_notFound() {
         // arrange
 
         // act
-
+        ResponseEntity<Game> actual = testee.updateGame(GAME_ID, game);
         // assert
-
+        assertThat(actual.getBody()).isNull();
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
+        verify(gameRepository).findById(GAME_ID);
     }
 
     @Test
