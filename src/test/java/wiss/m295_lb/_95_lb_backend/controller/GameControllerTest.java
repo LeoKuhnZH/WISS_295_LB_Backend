@@ -75,11 +75,12 @@ class GameControllerTest {
     @Test
     void createGame() {
         // arrange
-
+        when(gameRepository.save(game)).thenReturn(savedGame);
         // act
-
+        ResponseEntity<Game> actual = testee.createGame(game);
         // assert
-
+        assertEquals(savedGame,actual.getBody());
+        assertEquals(HttpStatus.CREATED, actual.getStatusCode());
     }
 
     @Test
