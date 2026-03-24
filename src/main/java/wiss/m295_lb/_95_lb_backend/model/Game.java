@@ -1,7 +1,6 @@
 package wiss.m295_lb._95_lb_backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import wiss.m295_lb._95_lb_backend.model.connecting_table.UserGame;
 
