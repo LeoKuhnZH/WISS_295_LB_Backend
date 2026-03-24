@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 class GenreControllerTest {
     private static final String A_DESCRIPTION = "a_description";
     private static final String A_NAME = "a_name";
-    private final static Long  GENRE_ID = 7L;
+    private static final  Long  GENRE_ID = 7L;
 
     @InjectMocks
     private GenreController testee;
